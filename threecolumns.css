@@ -1,0 +1,67 @@
+.header{
+    background-color: #aff5d9;
+    z-index: 1;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 220px;
+    width: 100%;
+}
+
+
+.leftpanel {
+    z-index: 0;
+    position: absolute;
+    left: 0px;
+    top: 210px;
+    width: 10%;
+    padding: 10px;
+    min-height: 100%;
+    background-color: #E4FFF4;
+}
+.rightpanel {
+    z-index: 1;
+    position: fixed;
+    right: 0px;
+    top: 210px;
+    width: 10%;
+    padding: 10px;
+    min-height: 100%;
+    background-color: #E4FFF4;
+}
+
+.middlepanel {
+    margin-left: 12%;
+    margin-right: 12%;
+    margin-top: 210px;
+    background-color: #aff5d9;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+    border-style: solid;
+    border-color: #9df1d0;
+    padding: 10px;
+    min-height: 100%;
+    min-width: none;
+}
+.bodycontainer{
+    position: absolute;
+    background-color: #aff5d9;
+    left: 0px;
+    max-width: none;
+    min-width: 650px;
+
+}
+
+.overlay{
+    position: relative;
+    height: 446px;
+}
+
+.overlaytext{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: black;
+}
