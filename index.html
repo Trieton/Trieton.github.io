@@ -1,27 +1,55 @@
 <!DOCTYPE html>
-<html>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,, initial-scale=1">
-<link rel="stylesheet" href="style.css">
-<style>
-   html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-  }
-  iframe {
-   height:100%;
-}
-</style>
+<html lang="en">
 <head>
-   <title>Iframe page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>D&D Companion Website</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .menu {
+            width: 20%;
+            background-color: #5a5a5a;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .content {
+            width: 80%;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: gainsboro;
+        }
+    </style>
 </head>
 
 <body>
-<iframe src="menu.html"  width="20%" align="left" style="border: none;" name="menu"> </iframe>
+    <div class="layout">
 
-<iframe src="home.html"  width="80%" align="right" style="border: none;" name="rightside"></iframe>
 
+        <div class="menu">
+            <h3>Menu</h3>
+            <a href="index.html" class="menubutton">Home</a>
+            <a href="resourcesPage.html" class="menubutton">Resources</a>
+            <a href="http://72.186.5.182:30000/" class="menubutton" target="_blank">Join the Game</a>
+        </div>
+
+        <div class="content">
+            <center>
+                <h1><b>D&amp;D Companion Website Project</b></h1>
+            </center>
+            <hr>
+    </div>
 </body>
 </html>

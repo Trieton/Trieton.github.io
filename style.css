@@ -55,5 +55,15 @@ h1{
 
 }
 .menubutton:hover{
-
+    background-color: #4842a5;
+    border: 2px solid #778bfd;
+    border-radius: 5px;
+    padding: 15px 30px;
+    width: fit-content;
+    height: fit-content;
+    display: block;
+    font-size: 50px;
+    font-weight: 200;
+    font-style: bold;
+    transition: text-shadow 0.5s, box-shadow 0.5s;
 }
