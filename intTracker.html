@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+
+
+<head>
+
+</head>
+<body >
+<nav class="navbar">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="resourcesPage.html">Resources</a></li>
+    <li><a href="http://72.186.5.182:30000/">Join the Game</a></li>
+    <li><a href="intTracker.html">Tracker</a></li>
+  </ul>
+</nav>
+<main>
+<div class="tracker-container">
+    <h2>Turn Tracker</h2>
+    <div class="input-group">
+        <input type="text" id="playerName" placeholder="Enter name...">
+        <input type="number" id="initiativeValue" placeholder="Init" min="0">
+        <button id="addBtn" onclick="addPlayer()">Add</button>
+    </div>
+    <ul id="turnList">
+    </ul>
+    <button id="nextBtn" onclick="nextTurn()">Next Turn</button>
+</div>
+
+<script>
+    let players = [];
+    let activeIndex = 0;
+
+    function addPlayer() {
+        const nameInput = document.getElementById('playerName');
+        const initInput = document.getElementById('initiativeValue');
+
+        const name = nameInput.value.trim();
+        const initiative = parseInt(initInput.value);
+
+        if (name && !isNaN(initiative)) {
+            players.push({
+                name: name,
+                initiative: initiative
+            });
+
+            players.sort((a, b) => b.initiative - a.initiative);
+
+            nameInput.value = '';
+            initInput.value = '';
+
+            activeIndex = 0;
+
+            renderList();
+        }
+    }
+
+    function removePlayer(index) {
+        players.splice(index, 1);
+        if (activeIndex >= players.length) activeIndex = 0;
+        renderList();
+    }
+
+    function nextTurn() {
+        if (players.length === 0) return;
+        activeIndex = (activeIndex + 1) % players.length;
+        renderList();
+    }
+
+    function renderList() {
+        const list = document.getElementById('turnList');
+        list.innerHTML = '';
+        players.forEach((player, index) => {
+        const li = document.createElement('li');
+
+        if (index === activeIndex)
+        li.classList.add('active');
+
+        li.innerHTML = `
+            <span>${player.name} (Init: ${player.initiative})</span>
+            <button class="delete-btn" onclick="removePlayer(${index})">X</button>
+        `;
+
+        list.appendChild(li);
+        });
+    }
+</script>
+
+
+</main>
+
+
+
+</body>
+</html>
