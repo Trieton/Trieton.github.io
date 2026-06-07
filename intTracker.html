@@ -80,7 +80,7 @@
         li.classList.add('active');
 
         li.innerHTML = `
-            <span>${player.name} (Init: ${player.initiative})</span>
+            <span>${player.name} (Init: ${player.initiative})<input type="text"></span>
             <button class="delete-btn" onclick="removePlayer(${index})">X</button>
         `;
 
