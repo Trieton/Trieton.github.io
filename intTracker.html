@@ -33,27 +33,38 @@
 <script>
     let players = [];
     let activeIndex = 0;
-
+    let currentPlayerId = null;
     function addPlayer() {
         const nameInput = document.getElementById('playerName');
         const initInput = document.getElementById('initiativeValue');
-
+        
         const name = nameInput.value.trim();
         const initiative = parseInt(initInput.value);
         const health = 0;
+
         if (name && !isNaN(initiative)) {
-            players.push({
-                name: name,
-                initiative: initiative
-            });
+            const newPlayer = {
+               id: crypto.randomUUID(),
+               name: name,
+               initiative: initiative,
+               health: 0
+            };
+
+        players.push({
+            id: crypto.randomUUID(),
+            name,
+            initiative,
+            health: 0 });
 
             players.sort((a, b) => b.initiative - a.initiative);
 
             nameInput.value = '';
             initInput.value = '';
 
-            activeIndex = 0;
-
+            if (currentPlayerId === null) {
+                currentPlayerId = players[0].id;
+            }
+  
             renderList();
         }
     }
@@ -65,9 +76,15 @@
     }
 
     function nextTurn() {
-        if (players.length === 0) return;
-        activeIndex = (activeIndex + 1) % players.length;
-        renderList();
+            if (players.length === 0) return;
+                const currentIndex = players.findIndex(
+                p => p.id === currentPlayerId
+                );
+
+    const nextIndex = (currentIndex + 1) % players.length;
+    currentPlayerId = players[nextIndex].id;
+
+    renderList();
     }
 
     function renderList() {
@@ -76,11 +93,12 @@
         players.forEach((player, index) => {
         const li = document.createElement('li');
 
-        if (index === activeIndex)
-        li.classList.add('active');
+        if (player.id === currentPlayerId) {
+            li.classList.add("active");
+        }
 
         li.innerHTML = `
-            <span>${player.name} (${player.initiative}) Health: <input type="number" min="0" max="999" /> </span>
+            <span>${player.name} (${player.initiative}) Health: <input type="number" value="${player.health}" onchange="players[${index}].health = this.value" /> </span>
             <button class="delete-btn" onclick="removePlayer(${index})">X</button>
         `;
 
